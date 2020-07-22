@@ -37,11 +37,8 @@ Existing Docker image templates so far:
      ```
    - Remove running container:  
      ```bash
-     # Stop & remove container
      docker stop tf_ssh_gpu01
      docker rm tf_ssh_gpu01
-
-     # Close UFW port
      ```
    - Add / Remove firewall port rules for protected ports (e.g. 80,443):
      - Allow port:
