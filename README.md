@@ -46,12 +46,12 @@ Existing Docker image templates so far:
    - Add / Remove firewall port rules for protected ports (e.g. 80,443):
      - Allow port:
        ```bash
-       sudo ufw allow 8022
+       sudo ufw allow 80
        ```
      - Remove port rule:
        ```bash
-       # Look for rules with port 8022
+       # Look for rules with port 80
        sudo ufw status numbered
-       # Remove entries related to port 8022
+       # Remove entries related to port 80
        sudo ufw delete <number>
        ```
