@@ -26,9 +26,6 @@ Existing Docker image templates so far:
          -p 8022:22 \
          -itd \
          misit/misit-tf-ssh:latest
-     # On GPU host: Open port
-     # (This example uses port 8022 on host)
-     sudo ufw allow 8022
 
      # On local machine: Connect via ssh
      # Login using default password: template
@@ -45,8 +42,16 @@ Existing Docker image templates so far:
      docker rm tf_ssh_gpu01
 
      # Close UFW port
-     # Look for rules with port 8022
-     sudo ufw status numbered
-     # Remove entries related to port 8022
-     sudo ufw delete <number>
      ```
+   - Add / Remove firewall port rules for protected ports (e.g. 80,443):
+     - Allow port:
+       ```bash
+       sudo ufw allow 8022
+       ```
+     - Remove port rule:
+       ```bash
+       # Look for rules with port 8022
+       sudo ufw status numbered
+       # Remove entries related to port 8022
+       sudo ufw delete <number>
+       ```
