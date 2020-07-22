@@ -23,6 +23,7 @@ Existing Docker image templates so far:
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
          -e TF_FORCE_GPU_ALLOW_GROWTH=true \
+         --restart unless-stopped \ 
          -p 8022:22 \
          -itd \
          misit/misit-tf-ssh:latest
