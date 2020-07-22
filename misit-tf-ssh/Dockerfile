@@ -1,0 +1,25 @@
+FROM tensorflow/tensorflow:latest-gpu
+
+# Skip promps
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Adjust timezone
+RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
+# Install required software
+RUN apt-get update && \
+    apt-get install -y locales build-essential sudo git jq nano && \
+    apt-get install -y openssh-server && \
+    \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Setup ssh
+RUN echo 'root:template' | chpasswd
+RUN mkdir /var/run/sshd
+RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+
+EXPOSE 22
+
+# Run ssh daemon as command
+CMD    ["/usr/sbin/sshd", "-D"]
