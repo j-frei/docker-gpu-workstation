@@ -31,7 +31,7 @@ Existing Docker image templates so far:
      # On local machine: Connect via ssh
      # Login using default password: template
      ssh -p 8022 root@misit180.informatik.uni-augsburg.de
-     # or using X-Forwarding:
+     # (optional) including X-Forwarding:
      ssh -X -p 8022 root@misit180.informatik.uni-augsburg.de
      # On ssh session: Change default password:
      echo 'root:my_new_password' | chpasswd
