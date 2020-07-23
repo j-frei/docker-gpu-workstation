@@ -17,6 +17,7 @@ Existing Docker image templates so far:
      # except:
      # - '-d' parameter for detach was added.
      # - '-p' parameter / port mapping was added.
+     # - `--restart`-policy was added to survive reboots.
      docker run \
          --gpus '"device=0,1"' \
          --name=tf_ssh_gpu01 \
