@@ -1,12 +1,12 @@
 # Docker Files for GPU Workstation
 Existing Docker image templates so far:
- - misit/misit-tf-ssh
+ - misit/misit-tf-ssh-x11
 
 ## How to build
  - Run the file `build.sh` of the desired image folder on the GPU workstation host.
 
 ## How to use
- - Example for image `misit-tf-ssh`:
+ - Example for image `misit-tf-ssh-x11`:
    - Example Setup:
      - SSH port: 8022
      - Container name: tf_ssh_gpu01  
@@ -23,14 +23,16 @@ Existing Docker image templates so far:
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
          -e TF_FORCE_GPU_ALLOW_GROWTH=true \
-         --restart unless-stopped \ 
+         --restart unless-stopped \
          -p 8022:22 \
          -itd \
-         misit/misit-tf-ssh:latest
+         misit/misit-tf-ssh-x11:latest
 
      # On local machine: Connect via ssh
      # Login using default password: template
      ssh -p 8022 root@misit180.informatik.uni-augsburg.de
+     # or using X-Forwarding:
+     ssh -X -p 8022 root@misit180.informatik.uni-augsburg.de
      # On ssh session: Change default password:
      echo 'root:my_new_password' | chpasswd
 
