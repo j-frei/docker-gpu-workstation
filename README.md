@@ -57,3 +57,18 @@ Existing Docker image templates so far:
        # Remove entries related to port 80
        sudo ufw delete <number>
        ```
+ - Example for image `misit-pytorch-ssh-x11`:
+   * Follow the steps similar to `misit-tf-ssh-x11`.
+   * Use `--ipc=host` for the `docker run` command.  
+     ```bash
+     docker run \
+         --gpus '"device=0,1"' \
+         --name=pytorch_ssh_gpu01 \
+         -v /storage/<RZ-Kennung>/docker:/storage \
+         -v /data/<RZ-Kennung>/docker:/data \
+         --ipc=host \
+         --restart unless-stopped \
+         -p 8022:22 \
+         -itd \
+         misit/misit-pytorch-ssh-x11:latest
+     ```
