@@ -1,6 +1,7 @@
 # Docker Files for GPU Workstation
 Existing Docker image templates so far:
  - misit/misit-tf-ssh-x11
+ - misit/misit-pytorch-ssh-x11
 
 ## How to build
  - Run the file `build.sh` of the desired image folder on the GPU workstation host.
