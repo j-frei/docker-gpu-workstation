@@ -78,7 +78,7 @@ Existing Docker image templates so far:
    * Keep out `--gpus ...` parameter for the `docker run` command.  
      ```bash
      docker run \
-         --name=pytorch_ssh_gpu01 \
+         --name=ubuntu_ssh \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
          --restart unless-stopped \
