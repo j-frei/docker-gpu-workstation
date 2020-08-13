@@ -1,4 +1,4 @@
-FROM ubuntu/ubuntu:latest
+FROM ubuntu:latest
 
 # Skip promps
 ENV DEBIAN_FRONTEND=noninteractive
