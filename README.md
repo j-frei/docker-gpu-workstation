@@ -2,6 +2,7 @@
 Existing Docker image templates so far:
  - misit/misit-tf-ssh-x11
  - misit/misit-pytorch-ssh-x11
+ - misit/misit-ubuntu-ssh-x11
 
 ## How to build
  - Run the file `build.sh` of the desired image folder on the GPU workstation host.
@@ -72,3 +73,17 @@ Existing Docker image templates so far:
          -itd \
          misit/misit-pytorch-ssh-x11:latest
      ```
+ - Example for image `misit-ubuntu-ssh-x11`:
+   * Follow the steps similar to `misit-tf-ssh-x11`.
+   * Keep out `--gpus ...` parameter for the `docker run` command.  
+     ```bash
+     docker run \
+         --name=pytorch_ssh_gpu01 \
+         -v /storage/<RZ-Kennung>/docker:/storage \
+         -v /data/<RZ-Kennung>/docker:/data \
+         --restart unless-stopped \
+         -p 8022:22 \
+         -itd \
+         misit/misit-ubuntu-ssh-x11:latest
+     ```
+
