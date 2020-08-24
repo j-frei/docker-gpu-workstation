@@ -29,6 +29,7 @@ EXPOSE 22
 
 # Add runonce script
 ADD ./runonce.sh /runonce.sh
+ADD ./envparser.py /envparser.py
 
 # Run ssh daemon as command
 CMD    ["sh", "-c", "/runonce.sh && /usr/sbin/sshd -D"]
