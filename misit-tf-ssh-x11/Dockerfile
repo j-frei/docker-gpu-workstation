@@ -27,5 +27,8 @@ RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >>
 
 EXPOSE 22
 
+# Add runonce script
+ADD ./runonce.sh /runonce.sh
+
 # Run ssh daemon as command
-CMD    ["/usr/sbin/sshd", "-D"]
+CMD    ["sh", "-c" "/runonce.sh && /usr/sbin/sshd -D"]
