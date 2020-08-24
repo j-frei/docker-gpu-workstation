@@ -2,6 +2,6 @@
 
 if [ ! -f /etc/misit-docker-runonce.lock ]; then
     echo "Container startup... Setup environment..."
-    python3 /envparser.py >> /etc/environment
+    /envparser.py >> /etc/profile
     touch /etc/misit-docker-runonce.lock
 fi
