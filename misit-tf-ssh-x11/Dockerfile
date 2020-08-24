@@ -31,4 +31,4 @@ EXPOSE 22
 ADD ./runonce.sh /runonce.sh
 
 # Run ssh daemon as command
-CMD    ["sh", "-c" "/runonce.sh && /usr/sbin/sshd -D"]
+CMD    ["sh", "-c", "/runonce.sh && /usr/sbin/sshd -D"]
