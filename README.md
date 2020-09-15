@@ -91,4 +91,4 @@ Existing Docker image templates so far:
          misit/misit-ubuntu-ssh-x11:latest
      ```
  - Additional docker run parameter:
-   * `-shm-size=16g` increases shared memory size (default: 64MiB)
+   * `--shm-size=16g` increases shared memory size (default: 64MiB)
