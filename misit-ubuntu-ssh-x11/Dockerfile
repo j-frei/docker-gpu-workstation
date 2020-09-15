@@ -26,5 +26,9 @@ RUN sed -i "s/^.*X11Forwarding.*$/X11Forwarding yes/" /etc/ssh/sshd_config
 RUN sed -i "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" /etc/ssh/sshd_config
 RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 
+# Add runonce script
+ADD ./runonce.sh /runonce.sh
+ADD ./envparser.py /envparser.py
+
 # Run ssh daemon as command
-CMD    ["sh", "-c", "/usr/sbin/sshd -D -p $SSH_PORT"]
+CMD    ["sh", "-c", "/runonce.sh && /usr/sbin/sshd -D -p $SSH_PORT"]
