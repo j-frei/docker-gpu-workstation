@@ -1,14 +1,6 @@
 #!/bin/bash
 
 getPythonCommands() {
-    pipCmd="pip3"
-    which $pipCmd
-    if [ "$?" -eq 0 ]; then
-        pipCmd="pip3"
-    else
-        pipCmd="pip"
-    fi
-
     pythonCmd="python3"
     which $pythonCmd
     if [ "$?" -eq 0 ]; then
@@ -16,6 +8,8 @@ getPythonCommands() {
     else
         pythonCmd="python"
     fi
+
+    pipCmd="$pythonCmd -m pip"
 }
 
 askPassword() {
