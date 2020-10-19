@@ -19,17 +19,15 @@ Existing Docker image templates so far:
      # except:
      # - '-d' parameter for detach was added.
      # - '-p' parameter / port mapping was added.
-     # - '-e' for SSH_PORT was used. If not set, default value: 22
+     # - '-e' for SSH_PORT can be used. If not set, default value: 22
      # - `--restart`-policy was added to survive reboots.
-     # Example setup with explicit, custom SSH_PORT:
      docker run \
          --gpus '"device=0,1"' \
          --name=tf_ssh_gpu01 \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
          -e TF_FORCE_GPU_ALLOW_GROWTH=true \
-         -e SSH_PORT=8022 \
-         -p 8022:8022 \
+         -p 8022:22 \
          --restart unless-stopped \
          -itd \
          misit/misit-tf-ssh-x11:latest
@@ -78,13 +76,15 @@ Existing Docker image templates so far:
      ```
  - Example for image `misit-ubuntu-ssh-x11`:
    * Follow the steps similar to `misit-tf-ssh-x11`.
-   * Keep out `--gpus ...` parameter for the `docker run` command.  
+   * Keep out `--gpus ...` parameter for the `docker run` command.
+   * Custom SSH_PORT is only for demonstration purposes.  
      ```bash
      docker run \
          --name=ubuntu_ssh \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
-         -p 8022:22 \
+         -e SSH_PORT=8022 \
+         -p 8022:8022 \
          --restart unless-stopped \
          -itd \
          misit/misit-ubuntu-ssh-x11:latest
