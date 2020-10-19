@@ -19,8 +19,9 @@ Existing Docker image templates so far:
      # except:
      # - '-d' parameter for detach was added.
      # - '-p' parameter / port mapping was added.
-     # - '-e' for SSH_PORT was used.
+     # - '-e' for SSH_PORT was used. If not set, default value: 22
      # - `--restart`-policy was added to survive reboots.
+     # Example setup with explicit, custom SSH_PORT:
      docker run \
          --gpus '"device=0,1"' \
          --name=tf_ssh_gpu01 \
@@ -70,8 +71,7 @@ Existing Docker image templates so far:
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
          --ipc=host \
-         -e SSH_PORT=8022 \
-         -p 8022:8022 \
+         -p 8022:22 \
          --restart unless-stopped \
          -itd \
          misit/misit-pytorch-ssh-x11:latest
@@ -84,8 +84,7 @@ Existing Docker image templates so far:
          --name=ubuntu_ssh \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
-         -e SSH_PORT=8022 \
-         -p 8022:8022 \
+         -p 8022:22 \
          --restart unless-stopped \
          -itd \
          misit/misit-ubuntu-ssh-x11:latest

@@ -19,6 +19,7 @@ RUN echo 'root:template' | chpasswd
 RUN mkdir /var/run/sshd
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+ENV SSH_PORT=22
 
 # Setup X11 forwarding
 RUN sed -i "s/^.*X11Forwarding.*$/X11Forwarding yes/" /etc/ssh/sshd_config
