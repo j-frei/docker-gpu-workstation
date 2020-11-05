@@ -92,7 +92,7 @@ Existing Docker image templates so far:
  - Additional docker run parameter:
    * `--shm-size=16g` increases shared memory size (default: 64MiB)
 
-## Skripts
+## Scripts
 
 ### Jupyter Notebook
 Steps to install Jupyter Notebook inside Docker container
@@ -101,7 +101,7 @@ Steps to install Jupyter Notebook inside Docker container
 docker run .... -p 9876:8888 ....
 
 # Move setup script into Docker container
-scp -P <SSH_PORT> ./scripts/setup_jupyter_notebook.sh root@misit180.informatik.uni-augsburg.de:~/
+scp -p <SSH_PORT> ./scripts/setup_jupyter_notebook.sh root@misit180.informatik.uni-augsburg.de:~/
 
 # Login
 ssh -p <SSH_PORT> root@misit180.informatik.uni-augsburg.de
