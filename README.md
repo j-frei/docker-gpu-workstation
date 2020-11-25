@@ -7,6 +7,12 @@ Existing Docker image templates so far:
 ## How to build
  - Run the file `build.sh` of the desired image folder on the GPU workstation host.
 
+## Useful Post-Setup Steps
+ - Setup Git configuration:
+   ```bash
+   git config --global user.name "Vorname Nachname"
+   git config --global user.email "meine.email@provider.de"
+   ```
 ## How to use
  - Example for image `misit-tf-ssh-x11`:
    - Example Setup:
