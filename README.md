@@ -108,8 +108,8 @@ Steps to install Jupyter Notebook inside Docker container
 # Create new Docker container with additional port (e.g. 9876) to 8888
 docker run .... -p 9876:8888 ....
 
-# Move setup script into Docker container
-scp -p <SSH_PORT> ./scripts/setup_jupyter_notebook.sh root@misit180.informatik.uni-augsburg.de:~/
+# Move setup script into Docker container (captial P for port)
+scp -P <SSH_PORT> ./scripts/setup_jupyter_notebook.sh root@misit180.informatik.uni-augsburg.de:~/
 
 # Login
 ssh -p <SSH_PORT> root@misit180.informatik.uni-augsburg.de
@@ -132,7 +132,7 @@ nohup jupyter notebook &
 cat >> /runonce.sh <<EOF
 
 # Jupyter Notebook launch
-sh -c "cd ~/ && nohup jupyter notebook &>.jupyter.logs.txt &"
+sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter.logs.txt 2>&1 &"
 EOF
 ```
 
