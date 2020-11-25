@@ -127,5 +127,12 @@ nohup jupyter notebook &
 
 # Jupyter Notebook is now available at (using self-signed HTTPS):
 # https://misit180.informatik.uni-augsburg.de:9876/
+
+# [OPTIONAL] Add Jupyter Notebook to launch at container startup
+cat >> /runonce.sh <<EOF
+
+# Jupyter Notebook launch
+sh -c "cd ~/ && nohup jupyter notebook &>.jupyter.logs.txt &"
+EOF
 ```
 
