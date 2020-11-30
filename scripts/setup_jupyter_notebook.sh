@@ -16,7 +16,7 @@ askPassword() {
     password=""
     # Ask for Password
     while true; do
-        echo -n "New Password: "
+        echo -n "New password: "
         read -s pass1
         echo
         echo -n "Confirm password: "
@@ -28,7 +28,8 @@ askPassword() {
             continue
         fi
         if [ ${#pass1} -le 2 ]; then
-            echo "Password needs to at least 3 chars!"
+            echo "Password needs at least 3 chars!"
+            continue
         fi
 
         echo "Password seems good!"
@@ -77,4 +78,4 @@ echo "import ssl"                                                          >> $c
 echo "c.NotebookApp.ssl_options = {\"ssl_version\": ssl.PROTOCOL_TLSv1_2}" >> $cfg_file
 
 echo "Script was successful!"
-echo "Start the Jupyter Notebook with \"nohup jupyter notebook &\""
+echo "Start the Jupyter Notebook with \"jupyter notebook\" or (detached) \"nohup jupyter notebook &\""
