@@ -117,7 +117,7 @@ ssh -p <SSH_PORT> root@misit180.informatik.uni-augsburg.de
 # Run setup script & enter password for Jupyter Notebook
 ./setup_jupyter_notebook.sh
 # ......
-# New Password: 
+# New password: 
 # Confirm password: 
 # ......
 
