@@ -63,6 +63,7 @@ ADD ./spice/spice_x11.conf /etc/X11/spiceqxl.xorg.conf
 ENV SPICE_PORT=5900
 ENV SPICE_KEY="de"
 ENV SPICE_RES="1366x768"
+ENV SPICE_FPS="25"
 
 # Run ssh daemon as command
 CMD    ["sh", "-c", "/runonce.sh && /usr/sbin/sshd -D -p $SSH_PORT"]
