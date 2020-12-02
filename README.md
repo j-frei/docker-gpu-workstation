@@ -3,6 +3,7 @@ Existing Docker image templates so far:
  - misit/misit-tf-ssh-x11
  - misit/misit-pytorch-ssh-x11
  - misit/misit-ubuntu-ssh-x11
+ - misit/misit-ubuntu-ssh-x11-xfce (XFCE-Desktop via SPICE)
 
 ## How to build
  - Run the file `build.sh` of the desired image folder on the GPU workstation host.
@@ -14,6 +15,7 @@ Existing Docker image templates so far:
    git config --global user.email "meine.email@provider.de"
    ```
 ## How to use
+### Information about CLI/GPU-focused Containers
  - Example for image `misit-tf-ssh-x11`:
    - Example Setup:
      - SSH port: 8022
@@ -99,6 +101,33 @@ Existing Docker image templates so far:
      ```
  - Additional docker run parameter:
    * `--shm-size=16g` increases shared memory size (default: 64MiB)
+
+### Information about GUI/XFCE-based Containers
+ - How to use SPICE:
+   - It is recommended to use `remote viewer` in order to access the SPICE session.  
+     In Ubuntu 20.04, the APT package is called `virt-viewer`.
+ - Example for image `misit-ubuntu-ssh-x11-xfce`:
+   * The XSpice/XFCE-Desktop hooks into the `/runonce.sh`-script in order to launch at container startup.
+   * Custom SSH_PORT is only for demonstration purposes.
+   * Available additional parameters:
+     * `SPICE_PORT` (default: 5900)
+     * `SPICE_FPS` (default: 25)
+     * `SPICE_KEY` (default: "de")
+     * `SPICE_RES` (default: "1366x786")
+       * You can change the resolution in a SPICE session temporarily with `randr -s <width>x<height>`.
+       * The SPICE password is stored in `~/.spice_password`. If you change it, you'll need to restart the container in order to reload the password.  
+     ```bash
+     docker run \
+         --name=ubuntu_ssh_xfce \
+         -v /storage/<RZ-Kennung>/docker:/storage \
+         -v /data/<RZ-Kennung>/docker:/data \
+         -e SSH_PORT=8022 \
+         -p 8022:8022 \
+         -p 5999:5900 \
+         --restart unless-stopped \
+         -itd \
+         misit/misit-ubuntu-ssh-x11-xfce:latest
+     ```
 
 ## Scripts
 
