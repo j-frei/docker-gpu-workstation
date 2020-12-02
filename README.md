@@ -128,7 +128,11 @@ Existing Docker image templates so far:
          -itd \
          misit/misit-ubuntu-ssh-x11-xfce:latest
      ```
-
+ - Connect to the SPICE session with the following command on your machine:  
+   ```bash
+   remote-viewer spice://misit180.informatik.uni-augsburg.de:<SPICE_PORT>
+   ```
+   and enter the SPICE password. The SPICE password is stored in `~/.spice_password` inside the Docker container.
 ## Scripts
 
 ### Jupyter Notebook
