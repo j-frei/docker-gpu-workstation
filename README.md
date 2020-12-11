@@ -20,6 +20,7 @@ Existing Docker image templates so far:
    - Example Setup:
      - SSH port: 8022
      - Container name: tf_ssh_gpu01  
+     - Memory limit: 8GB
    - Spawn/Start new container:
      ```bash
      # On GPU host: Create/Run docker container
@@ -35,6 +36,7 @@ Existing Docker image templates so far:
          --name=tf_ssh_gpu01 \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
+         --memory=8g \
          -e TF_FORCE_GPU_ALLOW_GROWTH=true \
          -p 8022:22 \
          --restart unless-stopped \
@@ -78,6 +80,7 @@ Existing Docker image templates so far:
          --name=pytorch_ssh_gpu01 \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
+         --memory=8g \
          --ipc=host \
          -p 8022:22 \
          --restart unless-stopped \
@@ -93,6 +96,7 @@ Existing Docker image templates so far:
          --name=ubuntu_ssh \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
+         --memory=8g \
          -e SSH_PORT=8022 \
          -p 8022:8022 \
          --restart unless-stopped \
@@ -100,7 +104,8 @@ Existing Docker image templates so far:
          misit/misit-ubuntu-ssh-x11:latest
      ```
  - Additional docker run parameter:
-   * `--shm-size=16g` increases shared memory size (default: 64MiB)
+   * `--shm-size=1g` increases shared memory size to 1GB (default: 64MiB)
+   * `--memory=8g` sets memory limit to 8GB (default: no limit)
 
 ### Information about GUI/XFCE-based Containers
  - How to use SPICE:
