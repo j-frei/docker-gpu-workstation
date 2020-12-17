@@ -19,7 +19,7 @@ Existing Docker image templates so far:
  - Example for image `misit-tf-ssh-x11`:
    - Example Setup:
      - SSH port: 8022
-     - Container name: tf_ssh_gpu01  
+     - Container name: tf_ssh_gpu01
      - Memory limit: 8GB
    - Spawn/Start new container:
      ```bash
@@ -53,7 +53,7 @@ Existing Docker image templates so far:
 
      # You can start with your work now...
      ```
-   - Remove running container:  
+   - Remove running container:
      ```bash
      docker stop tf_ssh_gpu01
      docker rm tf_ssh_gpu01
@@ -72,7 +72,7 @@ Existing Docker image templates so far:
        ```
  - Example for image `misit-pytorch-ssh-x11`:
    * Follow the steps similar to `misit-tf-ssh-x11`.
-   * Use `--ipc=host` for the `docker run` command.  
+   * Use `--ipc=host` for the `docker run` command.
      ```bash
      docker run \
          --runtime=nvidia \
@@ -90,7 +90,7 @@ Existing Docker image templates so far:
  - Example for image `misit-ubuntu-ssh-x11`:
    * Follow the steps similar to `misit-tf-ssh-x11`.
    * Keep out `--gpus ...` parameter for the `docker run` command.
-   * Custom SSH_PORT is only for demonstration purposes.  
+   * Custom SSH_PORT is only for demonstration purposes.
      ```bash
      docker run \
          --name=ubuntu_ssh \
@@ -109,10 +109,10 @@ Existing Docker image templates so far:
 
 ### Information about GUI/XFCE-based Containers
  - How to use SPICE:
-   - It is recommended to use `remote viewer` in order to access the SPICE session.  
+   - It is recommended to use `remote viewer` in order to access the SPICE session.
      In Ubuntu 20.04, the APT package is called `virt-viewer`.
  - Example for image `misit-ubuntu-ssh-x11-xfce`:
-   * The XSpice/XFCE-Desktop hooks into the `/runonce.sh`-script in order to launch at container startup.
+   * The XSpice/XFCE-Desktop hooks into the `/entrypoint.sh`-script in order to launch at container startup.
    * Custom SSH_PORT is only for demonstration purposes.
    * Available additional parameters:
      * `SPICE_PORT` (default: 5900)
@@ -120,7 +120,7 @@ Existing Docker image templates so far:
      * `SPICE_KEY` (default: "de")
      * `SPICE_RES` (default: "1366x786")
        * You can change the resolution in a SPICE session temporarily with `randr -s <width>x<height>`.
-       * The SPICE password is stored in `~/.spice_password`. If you change it, you'll need to restart the container in order to reload the password.  
+       * The SPICE password is stored in `~/.spice_password`. If you change it, you'll need to restart the container in order to reload the password.
      ```bash
      docker run \
          --name=ubuntu_ssh_xfce \
@@ -133,7 +133,7 @@ Existing Docker image templates so far:
          -itd \
          misit/misit-ubuntu-ssh-x11-xfce:latest
      ```
- - Connect to the SPICE session with the following command on your machine:  
+ - Connect to the SPICE session with the following command on your machine:
    ```bash
    remote-viewer spice://misit180.informatik.uni-augsburg.de:<SPICE_PORT>
    ```
@@ -155,8 +155,8 @@ ssh -p <SSH_PORT> root@misit180.informatik.uni-augsburg.de
 # Run setup script & enter password for Jupyter Notebook
 ./setup_jupyter_notebook.sh
 # ......
-# New password: 
-# Confirm password: 
+# New password:
+# Confirm password:
 # ......
 
 # Go to $HOME directory and run Jupyter Notebook
@@ -167,7 +167,7 @@ nohup jupyter notebook &
 # https://misit180.informatik.uni-augsburg.de:9876/
 
 # [OPTIONAL] Add Jupyter Notebook to launch at container startup
-cat >> /runonce.sh <<EOF
+cat >> /entrypoint.sh <<EOF
 
 # Jupyter Notebook launch
 sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter.logs.txt 2>&1 &"

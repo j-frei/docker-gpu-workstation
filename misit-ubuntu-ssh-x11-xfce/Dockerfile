@@ -27,9 +27,9 @@ RUN sed -i "s/^.*X11Forwarding.*$/X11Forwarding yes/" /etc/ssh/sshd_config
 RUN sed -i "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" /etc/ssh/sshd_config
 RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 
-# Add runonce script
-ADD ./runonce.sh /runonce.sh
-ADD ./envparser.py /envparser.py
+# Add entrypoint script
+ADD ../shared/entrypoint.sh /entrypoint.sh
+ADD ../shared/envparser.py /envparser.py
 
 # ADDITIONAL XFCE SECTION
 # adapted from: https://github.com/gauthierc/DockerSpiceXfce4/
@@ -50,7 +50,7 @@ ADD ./spice/rundesktop.sh /rundesktop.sh
 RUN sh -c "echo \"\n\
 echo 'Start desktop script'\n\
 /rundesktop.sh > ~/.rundesktop.log\n\
-\" >> /runonce.sh"
+\" >> /entrypoint.sh"
 
 # Add spice xdg autostarts
 ADD ./spice/spice_xdg_setkeyboard.desktop /etc/xdg/autostart/
@@ -66,4 +66,4 @@ ENV SPICE_RES="1366x768"
 ENV SPICE_FPS="25"
 
 # Run ssh daemon as command
-CMD    ["sh", "-c", "/runonce.sh && /usr/sbin/sshd -D -p $SSH_PORT"]
+CMD ["sh", "-c", "/entrypoint.sh && sshd -D -p $SSH_PORT"]
