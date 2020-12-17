@@ -27,8 +27,8 @@ RUN sed -i "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" /etc/ssh/sshd_config
 RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 
 # Add entrypoint script
-ADD ../shared/entrypoint.sh /entrypoint.sh
-ADD ../shared/envparser.py /envparser.py
+ADD entrypoint.sh /entrypoint.sh
+ADD envparser.py /envparser.py
 
 # Run ssh daemon as command
 CMD ["sh", "-c", "/entrypoint.sh && sshd -D -p $SSH_PORT"]

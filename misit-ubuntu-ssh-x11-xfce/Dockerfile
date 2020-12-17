@@ -28,8 +28,8 @@ RUN sed -i "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" /etc/ssh/sshd_config
 RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 
 # Add entrypoint script
-ADD ../shared/entrypoint.sh /entrypoint.sh
-ADD ../shared/envparser.py /envparser.py
+ADD entrypoint.sh /entrypoint.sh
+ADD envparser.py /envparser.py
 
 # ADDITIONAL XFCE SECTION
 # adapted from: https://github.com/gauthierc/DockerSpiceXfce4/
