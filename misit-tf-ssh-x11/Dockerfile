@@ -31,4 +31,4 @@ ADD entrypoint.sh /entrypoint.sh
 ADD envparser.py /envparser.py
 
 # Run ssh daemon as command
-CMD ["sh", "-c", "/entrypoint.sh && sshd -D -p $SSH_PORT"]
+CMD ["sh", "-c", "/entrypoint.sh && /usr/sbin/sshd -D -p $SSH_PORT"]

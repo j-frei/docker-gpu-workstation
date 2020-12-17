@@ -66,4 +66,4 @@ ENV SPICE_RES="1366x768"
 ENV SPICE_FPS="25"
 
 # Run ssh daemon as command
-CMD ["sh", "-c", "/entrypoint.sh && sshd -D -p $SSH_PORT"]
+CMD ["sh", "-c", "/entrypoint.sh && /usr/sbin/sshd -D -p $SSH_PORT"]
