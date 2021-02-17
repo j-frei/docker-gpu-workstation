@@ -23,7 +23,7 @@ askPassword() {
         read -s pass2
         echo
 
-        if [ $pass1 != $pass2 ]; then
+        if [ "$pass1" != "$pass2" ]; then
             echo "Passwords are not equal!"
             continue
         fi
@@ -33,7 +33,7 @@ askPassword() {
         fi
 
         echo "Password seems good!"
-        password=$pass1
+        password="$pass1"
         break
     done
 }
