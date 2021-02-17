@@ -150,6 +150,9 @@ scp -P <SSH_PORT> ./scripts/setup_jupyter_notebook.sh root@misit180.informatik.u
 # Login
 ssh -p <SSH_PORT> root@misit180.informatik.uni-augsburg.de
 
+# Set new SSH password
+echo 'root:my_new_password' | chpasswd
+
 # Run setup script & enter password for Jupyter Notebook
 ./setup_jupyter_notebook.sh
 # ......
@@ -168,7 +171,44 @@ nohup jupyter notebook &
 cat >> /entrypoint.sh <<EOF
 
 # Jupyter Notebook launch
-sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter.logs.txt 2>&1 &"
+sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
 EOF
 ```
 
+
+### Jupyter Lab
+Steps to install Jupyter Lab inside Docker container
+```bash
+# Create new Docker container with additional port (e.g. 9876) to 8888
+docker run .... -p 9876:8888 ....
+
+# Move setup script into Docker container (captial P for port)
+scp -P <SSH_PORT> ./scripts/setup_jupyter_lab.sh root@misit180.informatik.uni-augsburg.de:~/
+
+# Login
+ssh -p <SSH_PORT> root@misit180.informatik.uni-augsburg.de
+
+# Set new SSH password
+echo 'root:my_new_password' | chpasswd
+
+# Run setup script & enter password for Jupyter Lab
+./setup_jupyter_lab.sh
+# ......
+# New password:
+# Confirm password:
+# ......
+
+# Go to $HOME directory and run Jupyter Lab
+cd ~
+nohup jupyter lab &
+
+# Jupyter Lab is now available at (using self-signed HTTPS):
+# https://misit180.informatik.uni-augsburg.de:9876/
+
+# [OPTIONAL] Add Jupyter Lab to launch at container startup
+cat >> /entrypoint.sh <<EOF
+
+# Jupyter Lab launch
+sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
+EOF
+```
