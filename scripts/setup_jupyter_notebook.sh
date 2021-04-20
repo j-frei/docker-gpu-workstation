@@ -74,8 +74,9 @@ echo "c.NotebookApp.open_browser = False"                                  >> $c
 echo "c.NotebookApp.password = '$hashPwd'"                                 >> $cfg_file
 echo "c.NotebookApp.password_required = True"                              >> $cfg_file
 echo "c.NotebookApp.port = 8888"                                           >> $cfg_file
+echo "c.NotebookApp.quit_button = False"                                   >> $cfg_file
 echo "import ssl"                                                          >> $cfg_file
 echo "c.NotebookApp.ssl_options = {\"ssl_version\": ssl.PROTOCOL_TLSv1_2}" >> $cfg_file
 
 echo "Script was successful!"
-echo "Start the Jupyter Notebook with \"jupyter notebook\" or (detached) \"nohup jupyter notebook &\""
+echo "Start the Jupyter Notebook with \"jupyter notebook\" or (detached) in background: sh -c \"cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &\""

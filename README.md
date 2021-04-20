@@ -161,8 +161,7 @@ echo 'root:my_new_password' | chpasswd
 # ......
 
 # Go to $HOME directory and run Jupyter Notebook
-cd ~
-nohup jupyter notebook &
+sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
 
 # Jupyter Notebook is now available at (using self-signed HTTPS):
 # https://misit180.informatik.uni-augsburg.de:9876/
@@ -199,8 +198,7 @@ echo 'root:my_new_password' | chpasswd
 # ......
 
 # Go to $HOME directory and run Jupyter Lab
-cd ~
-nohup jupyter lab &
+sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
 
 # Jupyter Lab is now available at (using self-signed HTTPS):
 # https://misit180.informatik.uni-augsburg.de:9876/

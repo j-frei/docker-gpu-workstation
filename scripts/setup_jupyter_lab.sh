@@ -65,7 +65,7 @@ hashPwd=$($pythonCmd -c "from jupyter_server.auth import passwd; print(passwd(\"
 
 # Setup config file
 cfg_file="$HOME/.jupyter/jupyter_lab_config.py"
-echo "# Overwrite variables"                                               >> $cfg_file
+echo "# Overwrite variables"                                             >> $cfg_file
 echo "c.ServerApp.allow_root = True"                                     >> $cfg_file
 echo "c.ServerApp.certfile = '$crt_file'"                                >> $cfg_file
 echo "c.ServerApp.ip = '0.0.0.0'"                                        >> $cfg_file
@@ -74,8 +74,9 @@ echo "c.ServerApp.open_browser = False"                                  >> $cfg
 echo "c.ServerApp.password = '$hashPwd'"                                 >> $cfg_file
 echo "c.ServerApp.password_required = True"                              >> $cfg_file
 echo "c.ServerApp.port = 8888"                                           >> $cfg_file
-echo "import ssl"                                                          >> $cfg_file
+echo "c.ServerApp.quit_button = False"                                   >> $cfg_file
+echo "import ssl"                                                        >> $cfg_file
 echo "c.ServerApp.ssl_options = {\"ssl_version\": ssl.PROTOCOL_TLSv1_2}" >> $cfg_file
 
 echo "Script was successful!"
-echo "Start the Jupyter Lab with \"jupyter lab\" or (detached) \"nohup jupyter lab &\""
+echo "Start the Jupyter Lab with \"jupyter lab\" or (detached) in background: sh -c \"cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &\""
