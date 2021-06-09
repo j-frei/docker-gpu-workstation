@@ -31,7 +31,7 @@ Existing Docker image templates so far:
      # - '-e' for SSH_PORT can be used. If not set, default value: 22
      # - `--restart`-policy was added to survive reboots.
      docker run \
-         --gpus '"device=0,1"' \
+         --gpus device=0,1 \
          --name=tf_ssh_gpu01 \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
@@ -74,7 +74,7 @@ Existing Docker image templates so far:
    * Use `--ipc=host` for the `docker run` command.
      ```bash
      docker run \
-         --gpus '"device=0,1"' \
+         --gpus device=0,1 \
          --name=pytorch_ssh_gpu01 \
          -v /storage/<RZ-Kennung>/docker:/storage \
          -v /data/<RZ-Kennung>/docker:/data \
