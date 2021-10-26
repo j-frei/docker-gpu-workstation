@@ -1,21 +1,32 @@
 # Infos und Beispiele zur Nutzung eines SSH-Containers
 
-Für die ersten Schritte auf der Workstation mit ssh sind folgende Befehle relevant.
-Ihr benötigt in jedem Fall das Uni-VPN!
+Für die ersten Schritte auf der Workstation mit ssh sind folgende Befehle relevant.  
+**Ihr benötigt in jedem Fall das Uni-VPN!**
 
 Benötigte Informationen:
 - SSH-Port
 - SSH-Passwort
 
+## Erste Schritte
+
 Einloggen (Auf eurem Rechner/Kommandozeile eingeben!):
 ```bash
 ssh -p <SSH-Port> root@misit180.informatik.uni-augsburg.de
+# Beim ersten Verbinden den Fingerprint des Servers bestätigen!
+# Zum Einloggen das SSH-Passwort eingeben
+```
+
+SSH-Passwort ändern (Innerhalb der SSH-Umgebung): 
+```bash
+echo 'root:mein_neues_passwort' | chpasswd
 ```
 
 Ausloggen (Innerhalb der SSH-Umgebung):
 ```bash
 exit
 ```
+
+## Weitere Befehle
 
 Aktuelles Verzeichnis ausgeben (Innerhalb der SSH-Umgebung):
 ```bash
@@ -46,6 +57,16 @@ Datei löschen (Innerhalb der SSH-Umgebung):
 ```bash
 rm datei.txt
 ```
+
+## Spezifisches zur VM-Workstation
+
+Alle Daten werden beim Löschen des Containers entfernt.  
+**Zwei Verzeichnisse bleiben jedoch persistent**:
+- `/data`: schneller, NVMe-Speicher, jedoch nicht ausfallgesichert und prinzipiell weniger Speicherplatz
+- `/storage`: schneller SATA-SSD (RAID 10)-Verbund, vor Hardwarschäden geschützt, viel Speicherplatz
+
+
+## Nütliche Infos
 
 Weitere Befehle wie den ls- oder cat-Befehl findet ihr auch diversen Cheat-Sheets wie hier:  
 https://cheatography.com/davechild/cheat-sheets/linux-command-line/
