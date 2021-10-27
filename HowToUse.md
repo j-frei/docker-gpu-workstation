@@ -63,7 +63,7 @@ rm datei.txt
 Alle Daten werden beim Löschen des Containers entfernt.  
 **Zwei Verzeichnisse bleiben jedoch persistent**:
 - `/data`: schneller, NVMe-Speicher, jedoch nicht ausfallgesichert und prinzipiell weniger Speicherplatz
-- `/storage`: schneller SATA-SSD (RAID 10)-Verbund, vor Hardwarschäden geschützt, viel Speicherplatz
+- `/storage`: schneller SATA-SSD (RAID 10)-Verbund, vor Hardwareschäden geschützt, viel Speicherplatz
 
 
 ## Nütliche Infos
