@@ -33,8 +33,9 @@ Existing Docker image templates so far:
      docker run \
          --gpus device=0,1 \
          --name=tf_ssh_gpu01 \
-         -v /storage/<RZ-Kennung>/docker:/storage \
-         -v /data/<RZ-Kennung>/docker:/data \
+         -v /storage/share:/share \
+         -v /storage/<RZ-Kennung>:/storage \
+         -v /data/<RZ-Kennung>:/data \
          --memory=8g \
          -e TF_FORCE_GPU_ALLOW_GROWTH=true \
          -p 8022:22 \
@@ -76,8 +77,9 @@ Existing Docker image templates so far:
      docker run \
          --gpus device=0,1 \
          --name=pytorch_ssh_gpu01 \
-         -v /storage/<RZ-Kennung>/docker:/storage \
-         -v /data/<RZ-Kennung>/docker:/data \
+         -v /storage/share:/share \
+         -v /storage/<RZ-Kennung>:/storage \
+         -v /data/<RZ-Kennung>:/data \
          --memory=8g \
          --ipc=host \
          -p 8022:22 \
@@ -92,8 +94,9 @@ Existing Docker image templates so far:
      ```bash
      docker run \
          --name=ubuntu_ssh \
-         -v /storage/<RZ-Kennung>/docker:/storage \
-         -v /data/<RZ-Kennung>/docker:/data \
+         -v /storage/share:/share \
+         -v /storage/<RZ-Kennung>:/storage \
+         -v /data/<RZ-Kennung>:/data \
          --memory=8g \
          -e SSH_PORT=8022 \
          -p 8022:8022 \
@@ -122,8 +125,9 @@ Existing Docker image templates so far:
      ```bash
      docker run \
          --name=ubuntu_ssh_xfce \
-         -v /storage/<RZ-Kennung>/docker:/storage \
-         -v /data/<RZ-Kennung>/docker:/data \
+         -v /storage/share:/share \
+         -v /storage/<RZ-Kennung>:/storage \
+         -v /data/<RZ-Kennung>:/data \
          -e SSH_PORT=8022 \
          -p 8022:8022 \
          -p 5999:5900 \
