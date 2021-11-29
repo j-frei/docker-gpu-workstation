@@ -11,14 +11,14 @@ Benötigte Informationen:
 
 Einloggen (Auf eurem Rechner/Kommandozeile eingeben!):
 ```bash
-ssh -p <SSH-Port> root@misit180.informatik.uni-augsburg.de
+ssh -p <SSH-Port> main@misit180.informatik.uni-augsburg.de
 # Beim ersten Verbinden den Fingerprint des Servers bestätigen!
 # Zum Einloggen das SSH-Passwort eingeben
 ```
 
 SSH-Passwort ändern (Innerhalb der SSH-Umgebung): 
 ```bash
-echo 'root:mein_neues_passwort' | chpasswd
+echo 'main:mein_neues_passwort' | chpasswd
 ```
 
 Ausloggen (Innerhalb der SSH-Umgebung):
@@ -65,6 +65,12 @@ Alle Daten werden beim Löschen des Containers entfernt.
 - `/data`: schneller, NVMe-Speicher, jedoch nicht ausfallgesichert und prinzipiell weniger Speicherplatz
 - `/storage`: schneller SATA-SSD (RAID 10)-Verbund, vor Hardwareschäden geschützt, viel Speicherplatz
 
+Gegebenenfalls müssen die Zugriffsrechte beim ersten Zugriff angepasst werden.  
+```bash
+sudo chown -R main:main /data
+sudo chown -R main:main /storage
+```
+
 
 ## Nütliche Infos
 
@@ -73,12 +79,12 @@ https://cheatography.com/davechild/cheat-sheets/linux-command-line/
 
 Datei auf euren lokalen Rechner kopieren (Auf eurem Rechner/Kommandozeile eingeben!):
 ```bash
-scp -P <SSH-Port> root@misit180.informatik.uni-augsburg.de:/root/datei.txt datei_lokal.txt
+scp -P <SSH-Port> main@misit180.informatik.uni-augsburg.de:/home/main/datei.txt datei_lokal.txt
 ```
 
 Anders herum dann so (Auf eurem Rechner/Kommandozeile eingeben!):
 ```bash
-scp -P <SSH-Port> datei_lokal.txt root@misit180.informatik.uni-augsburg.de:/root/datei.txt
+scp -P <SSH-Port> datei_lokal.txt main@misit180.informatik.uni-augsburg.de:/home/main/datei.txt
 ```
 
 Mit der Erweiterung SSH Remote könnt ihr auch direkt in VS Code arbeiten.  

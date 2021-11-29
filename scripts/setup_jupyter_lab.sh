@@ -40,31 +40,31 @@ askPassword() {
 
 
 # Setup dependencies
-apt-get update -y
-apt-get install -y sed
-apt-get install -y openssl
+sudo -u root apt-get update -y
+sudo -u root apt-get install -y sed
+sudo -u root apt-get install -y openssl
 
 getPythonCommands
 
 # Install jupyter
-$pipCmd install jupyterlab
+sudo -u root $pipCmd install jupyterlab
 
 # Setup config
-jupyter lab --generate-config
+sudo -u main jupyter lab --generate-config
 
 # Ask password
 askPassword
 
 # Generate certs
-crt_file="$HOME/.jupyter/cert.crt"
-key_file="$HOME/.jupyter/cert.key"
-openssl req -new -newkey rsa:4096 -sha256 -nodes -x509 -keyout $key_file -out $crt_file -subj "/C=DE/ST=Bayern/L=Augsburg/O=Universität Augsburg/OU=Misit/CN=*.informatik.uni-augsburg.de"
+crt_file="$(sudo -u main sh -c 'echo $HOME')/.jupyter/cert.crt"
+key_file="$(sudo -u main sh -c 'echo $HOME')/.jupyter/cert.key"
+sudo -u main sh -c "openssl req -new -newkey rsa:4096 -sha256 -nodes -x509 -keyout $key_file -out $crt_file -subj \"/C=DE/ST=Bayern/L=Augsburg/O=Universität Augsburg/OU=Misit/CN=*.informatik.uni-augsburg.de\""
 
 # Hash password
 hashPwd=$($pythonCmd -c "from jupyter_server.auth import passwd; print(passwd(\"$password\"))")
 
 # Setup config file
-cfg_file="$HOME/.jupyter/jupyter_lab_config.py"
+cfg_file="$(sudo -u main sh -c 'echo $HOME')/.jupyter/jupyter_lab_config.py"
 echo "# Overwrite variables"                                             >> $cfg_file
 echo "c.ServerApp.allow_root = True"                                     >> $cfg_file
 echo "c.ServerApp.certfile = '$crt_file'"                                >> $cfg_file
