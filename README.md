@@ -7,6 +7,7 @@ Existing Docker image templates so far:
 
 ## How to build
  - Run the file `build.sh` of the desired image folder on the GPU workstation host.
+ - Run the file `build_all_images.sh` to build all images on the GPU workstation host.
 
 ## Useful Post-Setup Steps
  - Setup Git configuration:
