@@ -71,8 +71,10 @@ sudo chown -R main:main /data
 sudo chown -R main:main /storage
 ```
 
+Wichtige Info: Der Speicherplatz für nicht-mounts ist auf 20G limitiert. Größere Daten müssen auf die Mounts (/storage, /data) geschrieben werden.
 
-## Nütliche Infos
+
+## Nützliche Infos
 
 Weitere Befehle wie den ls- oder cat-Befehl findet ihr auch diversen Cheat-Sheets wie hier:  
 https://cheatography.com/davechild/cheat-sheets/linux-command-line/
