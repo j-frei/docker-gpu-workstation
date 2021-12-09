@@ -16,8 +16,8 @@ Existing Docker image templates so far:
    ```
  - Set permissions (make mount folders accessible):
    ```bash
-   sudo chown -R main:main /storage/<RZ-Kennung>
-   sudo chown -R main:main /data/<RZ-Kennung>
+   sudo chown -R main:main /storage
+   sudo chown -R main:main /data
    ```
  - Set root password:
    ```bash
