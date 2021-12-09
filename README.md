@@ -16,7 +16,7 @@ Existing Docker image templates so far:
    ```
  - Set root password:
    ```bash
-    sudo passwd root
+   sudo passwd root
    ```
 ## How to use
 ### Information about CLI/GPU-focused Containers
