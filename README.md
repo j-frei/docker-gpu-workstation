@@ -48,6 +48,7 @@ Existing Docker image templates so far:
          --memory=8g \
          -e TF_FORCE_GPU_ALLOW_GROWTH=true \
          -p 8022:22 \
+         --storage-opt size=20G \
          --restart unless-stopped \
          -itd \
          misit/misit-tf-ssh-x11:latest
@@ -92,6 +93,7 @@ Existing Docker image templates so far:
          --memory=8g \
          --ipc=host \
          -p 8022:22 \
+         --storage-opt size=20G \
          --restart unless-stopped \
          -itd \
          misit/misit-pytorch-ssh-x11:latest
@@ -109,6 +111,7 @@ Existing Docker image templates so far:
          --memory=8g \
          -e SSH_PORT=8022 \
          -p 8022:8022 \
+         --storage-opt size=20G \
          --restart unless-stopped \
          -itd \
          misit/misit-ubuntu-ssh-x11:latest
@@ -140,6 +143,7 @@ Existing Docker image templates so far:
          -e SSH_PORT=8022 \
          -p 8022:8022 \
          -p 5999:5900 \
+         --storage-opt size=20G \
          --restart unless-stopped \
          -itd \
          misit/misit-ubuntu-ssh-x11-xfce:latest
