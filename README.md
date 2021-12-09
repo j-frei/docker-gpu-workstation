@@ -14,6 +14,10 @@ Existing Docker image templates so far:
    git config --global user.name "Vorname Nachname"
    git config --global user.email "meine.email@provider.de"
    ```
+ - Set root password:
+   ```bash
+    sudo passwd root
+   ```
 ## How to use
 ### Information about CLI/GPU-focused Containers
  - Example for image `misit-tf-ssh-x11`:
