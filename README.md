@@ -14,6 +14,11 @@ Existing Docker image templates so far:
    git config --global user.name "Vorname Nachname"
    git config --global user.email "meine.email@provider.de"
    ```
+ - Set permissions (make mount folders accessible):
+   ```bash
+   sudo chown -R main:main /storage/<RZ-Kennung>
+   sudo chown -R main:main /data/<RZ-Kennung>
+   ```
  - Set root password:
    ```bash
    sudo passwd root
