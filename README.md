@@ -30,6 +30,7 @@ Existing Docker image templates so far:
      - SSH port: 8022
      - Container name: tf_ssh_gpu01
      - Memory limit: 8GB
+     - Disk limit: 20G
    - Spawn/Start new container:
      ```bash
      # On GPU host: Create/Run docker container
