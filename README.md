@@ -127,7 +127,7 @@ Existing Docker image templates so far:
    - It is recommended to use `remote viewer` in order to access the SPICE session.
      In Ubuntu 20.04, the APT package is called `virt-viewer`.
  - Example for image `misit-ubuntu-ssh-x11-xfce`:
-   * The XSpice/XFCE-Desktop hooks into the `/entrypoint.sh`-script in order to launch at container startup.
+   * The XSpice/XFCE-Desktop hooks into the `/run-once.sh`-script in order to launch at container startup.
    * Custom SSH_PORT is only for demonstration purposes.
    * Available additional parameters:
      * `SPICE_PORT` (default: 5900)
@@ -189,7 +189,7 @@ sudo -u main sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.tx
 # https://misit180.informatik.uni-augsburg.de:9876/
 
 # [OPTIONAL] Add Jupyter Notebook to launch at container startup
-sudo sh -c 'cat >> /entrypoint.sh <<EOF
+sudo sh -c 'cat >> /run-once.sh <<EOF
 
 # Jupyter Notebook launch
 sudo -u main sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
@@ -228,7 +228,7 @@ sudo -u main sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
 # https://misit180.informatik.uni-augsburg.de:9876/
 
 # [OPTIONAL] Add Jupyter Lab to launch at container startup
-sudo -u root sh -c 'cat >> /entrypoint.sh <<EOF
+sudo -u root sh -c 'cat >> /run-once.sh <<EOF
 
 # Jupyter Lab launch
 sudo -u main sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"

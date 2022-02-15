@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:1.9.1-cuda11.1-cudnn8-devel
+FROM pytorch/pytorch:latest
 
 # Skip promps
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,6 +29,7 @@ RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >>
 
 # Add entrypoint script
 ADD entrypoint.sh /entrypoint.sh
+ADD run-once.sh /run-once.sh
 ADD envparser.py /envparser.py
 
 # Setup random root user password
@@ -41,4 +42,5 @@ RUN usermod -aG sudo main
 RUN echo 'main:template' | chpasswd
 
 # Run ssh daemon as command
-CMD ["sh", "-c", "/entrypoint.sh && /usr/sbin/sshd -D -p $SSH_PORT"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D", "-p", "$SSH_PORT"]

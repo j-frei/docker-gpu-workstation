@@ -29,6 +29,7 @@ RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >>
 
 # Add entrypoint script
 ADD entrypoint.sh /entrypoint.sh
+ADD run-once.sh /run-once.sh
 ADD envparser.py /envparser.py
 
 # Setup random root user password
@@ -59,7 +60,7 @@ ADD ./spice/rundesktop.sh /rundesktop.sh
 RUN sh -c "echo \"\n\
 echo 'Start desktop script'\n\
 /rundesktop.sh &> $(sudo -u main sh -c 'echo $HOME')/.rundesktop.log\n\
-\" >> /entrypoint.sh"
+\" >> /run-once.sh"
 
 # Add spice xdg autostarts
 ADD ./spice/spice_xdg_setkeyboard.desktop /etc/xdg/autostart/
@@ -75,4 +76,5 @@ ENV SPICE_RES="1366x768"
 ENV SPICE_FPS="25"
 
 # Run ssh daemon as command
-CMD ["sh", "-c", "/entrypoint.sh && /usr/sbin/sshd -D -p $SSH_PORT"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D", "-p", "$SSH_PORT"]
