@@ -108,7 +108,11 @@ Bei Abbruch oder Beenden der SSH-Verbindung werden die laufenden Prozesse der Si
   ```bash
   nohup python3 script.py >ausgabe.txt 2>&1 &
   ```  
-  gestartet werden. Dabei wird die Ausgabe (inkl. Fehlermeldungen) in die Datei ausgabe.txt geschrieben (und können mit `cat ausgabe.txt` oder `tail -fn +1 ausgabe.txt` (folgt auchneuen Zeilen) gelesen werden).
+  gestartet werden. Dabei wird die Ausgabe (inkl. Fehlermeldungen) in die Datei ausgabe.txt geschrieben (und können mit `cat ausgabe.txt` oder `tail -fn +1 ausgabe.txt` (folgt auchneuen Zeilen) gelesen werden).  
+  Bei komplexen Aufrufen mit vielen Parametern, Env-Variablen und Co. gilt analog:  
+  ```bash
+  nohup sh -c 'PYTHONUNBUFFERED=x python3 script.py' >ausgabe.txt 2>&1 &
+  ```
 - Mittels `tmux`:  
   Für eine neue Sitzung in Tmux muss eine neue Tmux-Sitzung gestartet werden:  
   `tmux new -s neueSitzung` (Sitzungsname ist `neueSitzung`) Anschließend kann der Befehl gestartet werden. Die Tmux-Sitzung kann mit dem gleichzeitigen Drücken von STRG+b, gefolgt von der Taste d verlassen werden, ohne dass der laufende Prozess beendet wird.  
