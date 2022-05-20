@@ -58,6 +58,66 @@ Datei löschen (Innerhalb der SSH-Umgebung):
 rm datei.txt
 ```
 
+Textdatei schreiben (Innerhalb der SSH-Umgebung):
+```bash
+# Einfaches > überschreibt ggf. bestehende Dateien komplett
+echo "Erste Testzeile" > testdatei.txt
+
+# Weitere Zeilen anhängen mittels >>
+echo "Weitere Zeile" >> testdatei.txt
+```  
+Textdateien lassen sich auch mit Texteditoren bearbeiten: (siehe `nano testdatei.txt`, `vi testdatei.txt`)
+
+Textdateien anzeigen lassen (Innerhalb der SSH-Umgebung):
+```bash
+cat testdatei.txt
+```
+
+Laufendes Programm abbrechen (Innerhalb der SSH-Umgebung):
+```bash
+# 1000 Sekunden laufendes Programm
+sleep 1000
+# Nun STRG+C drücken, um das Programm `sleep` abzubrechen
+```  
+Falls das Programm nicht darauf reagiert, muss der Prozess gekillt werden.
+
+Laufenden Prozess killen (Innerhalb der SSH-Umgebung):
+```bash
+# Bestehende Prozess-ID (PID) finden
+ps -aux | grep "python3 script.py"
+# Ausgabe:
+# root     123456  <........> python3 script.py
+
+# Höfliches Beenden (SigTerm)
+kill 123456
+# Brutales Beenden (SigKill)
+kill -9 123456
+# Bei fehlenden Berechtigungen
+sudo kill 123456
+sudo kill -9 123456
+
+# Alle python3-Prozesse killen mit pkill / killall
+[sudo] killall [-9] python3
+[sudo] pkill [-9] python3
+```
+
+## Befehle von SSH-Sitzung entkoppeln
+Bei Abbruch oder Beenden der SSH-Verbindung werden die laufenden Prozesse der Sitzung geschlossen. Um länger laufende Prozesse auch unabhängig von der SSH-Verbindung laufen zu lassen, gibt es verschiedene Möglichkeiten:
+- Mittels `nohup`:  
+  Wenn der Befehl `python3 script.py` auch nach der SSH-Sitzung weiterlaufen soll, kann der Prozess mittels  
+  ```bash
+  nohup python3 script.py >ausgabe.txt 2>&1 &
+  ```  
+  gestartet werden. Dabei wird die Ausgabe (inkl. Fehlermeldungen) in die Datei ausgabe.txt geschrieben (und können mit `cat ausgabe.txt` oder `tail -fn +1 ausgabe.txt` (folgt auchneuen Zeilen) gelesen werden).
+- Mittels `tmux`:  
+  Für eine neue Sitzung in Tmux muss eine neue Tmux-Sitzung gestartet werden:  
+  `tmux new -s neueSitzung` (Sitzungsname ist `neueSitzung`) Anschließend kann der Befehl gestartet werden. Die Tmux-Sitzung kann mit dem gleichzeitigen Drücken von STRG+b, gefolgt von der Taste d verlassen werden, ohne dass der laufende Prozess beendet wird.  
+  `tmux ls` zeigt laufende Tmux-Sitzungen an.  
+  `tmux a -t neueSitzung` wird verwendet, um laufende Sitzungen wieder zu betreten.  
+  Cheatsheet: http://tmuxcheatsheet.com/
+- Mittels SPICE/RDP (nur bei "echten" VMs):  
+  Via graphischer Oberfläche können innerhalb der VM-Umgebung ein Terminal mit Prozessen gestartet werden. Die SPICE/RDP-Sitzung kann unterbrochen werden und später wieder aufgenommen werden, ohne das die Prozesse in der VM unterbrochen werden.
+
 ## Spezifisches zur VM-Workstation
 
 Alle Daten werden beim Löschen des Containers entfernt.  
