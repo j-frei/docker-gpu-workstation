@@ -195,6 +195,13 @@ sudo sh -c 'cat >> /run-once.sh <<EOF
 sudo -u main sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
 EOF'
 ```
+
+# [OPTIONAL] Make /storage & /data easily available through SymLinks
+sudo -u main ln -s /storage /home/main/storage
+sudo -u main ln -s /data /home/main/data
+
+sudo -u root chown -R main:main /home/main/storage/.
+sudo -u root chown -R main:main /home/main/data/.
 </details>
 
 ### Jupyter Lab
@@ -233,5 +240,12 @@ sudo -u root sh -c 'cat >> /run-once.sh <<EOF
 # Jupyter Lab launch
 sudo -u main sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
 EOF'
+
+# [OPTIONAL] Make /storage & /data easily available through SymLinks
+sudo -u main ln -s /storage /home/main/storage
+sudo -u main ln -s /data /home/main/data
+
+sudo -u root chown -R main:main /home/main/storage/.
+sudo -u root chown -R main:main /home/main/data/.
 ```
 </details>
