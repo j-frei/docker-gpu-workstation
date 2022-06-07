@@ -27,6 +27,8 @@ Existing Docker image templates so far:
 ## How to use
 ### Information about CLI/GPU-focused Containers
  - Example for image `misit-tf-ssh-x11`:
+   <details>
+
    - Example Setup:
      - SSH port: 8022
      - Container name: tf_ssh_gpu01
@@ -70,7 +72,8 @@ Existing Docker image templates so far:
      docker stop tf_ssh_gpu01
      docker rm tf_ssh_gpu01
      ```
-   - Add / Remove firewall port rules for protected ports (e.g. 80,443):
+   - <s>Add / Remove firewall port rules for protected ports (e.g. 80,443):</s>  
+     **Note**: Docker bypasses UFW by default. You can ignore this info block.
      - Allow port:
        ```bash
        sudo ufw allow 80
@@ -82,7 +85,10 @@ Existing Docker image templates so far:
        # Remove entries related to port 80
        sudo ufw delete <number>
        ```
+   </details>
  - Example for image `misit-pytorch-ssh-x11`:
+   <details>
+
    * Follow the steps similar to `misit-tf-ssh-x11`.
    * Use `--ipc=host` for the `docker run` command.
      ```bash
@@ -100,7 +106,10 @@ Existing Docker image templates so far:
          -itd \
          misit/misit-pytorch-ssh-x11:latest
      ```
+   </details>
  - Example for image `misit-ubuntu-ssh-x11`:
+   <details>
+
    * Follow the steps similar to `misit-tf-ssh-x11`.
    * Keep out `--gpus ...` parameter for the `docker run` command.
    * Custom SSH_PORT is only for demonstration purposes.
@@ -118,15 +127,17 @@ Existing Docker image templates so far:
          -itd \
          misit/misit-ubuntu-ssh-x11:latest
      ```
+   </details>
  - Additional docker run parameter:
    * `--shm-size=1g` increases shared memory size to 1GB (default: 64MiB)
    * `--memory=8g` sets memory limit to 8GB (default: no limit)
-
 ### Information about GUI/XFCE-based Containers
  - How to use SPICE:
    - It is recommended to use `remote viewer` in order to access the SPICE session.
      In Ubuntu 20.04, the APT package is called `virt-viewer`.
  - Example for image `misit-ubuntu-ssh-x11-xfce`:
+   <details>
+
    * The XSpice/XFCE-Desktop hooks into the `/run-once.sh`-script in order to launch at container startup.
    * Custom SSH_PORT is only for demonstration purposes.
    * Available additional parameters:
@@ -150,6 +161,7 @@ Existing Docker image templates so far:
          -itd \
          misit/misit-ubuntu-ssh-x11-xfce:latest
      ```
+   </details>
  - Connect to the SPICE session with the following command on your machine:
    ```bash
    remote-viewer spice://misit180.informatik.uni-augsburg.de:<SPICE_PORT>
@@ -194,7 +206,6 @@ sudo sh -c 'cat >> /run-once.sh <<EOF
 # Jupyter Notebook launch
 sudo -u main sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
 EOF'
-```
 
 # [OPTIONAL] Make /storage & /data easily available through SymLinks
 sudo -u main ln -s /storage /home/main/storage
@@ -202,6 +213,7 @@ sudo -u main ln -s /data /home/main/data
 
 sudo -u root chown -R main:main /home/main/storage/.
 sudo -u root chown -R main:main /home/main/data/.
+```
 </details>
 
 ### Jupyter Lab
