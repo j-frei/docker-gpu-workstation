@@ -11,8 +11,8 @@ RUN apt-get update && \
     apt-get install -y locales build-essential sudo git jq nano && \
     apt-get install -y openssh-server && \
     apt-get install -y xauth && \
-    apt-get install -y python3-pip && \
-    apt-get install -y sudo && \
+    apt-get install -y python3-pip python3-venv python3-setuptools python3-wheel && \
+    apt-get install -y --no-install-recommends python3-opencv && \
     \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
