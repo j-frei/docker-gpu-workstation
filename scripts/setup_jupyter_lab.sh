@@ -47,6 +47,7 @@ sudo -u root apt-get install -y openssl
 getPythonCommands
 
 # Install jupyter
+sudo -u root $pipCmd install --upgrade pip
 sudo -u root $pipCmd install jupyterlab
 
 # Setup config
