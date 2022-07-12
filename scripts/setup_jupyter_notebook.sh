@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# stop at fail
+set -e
+
 getPythonCommands() {
     pythonCmd="python3"
     which $pythonCmd
