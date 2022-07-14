@@ -30,16 +30,11 @@ RUN grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >>
 # Add entrypoint script
 ADD entrypoint.sh /entrypoint.sh
 ADD run-once.sh /run-once.sh
+ADD setupUser.sh /setupUser.sh
 ADD envparser.py /envparser.py
 
 # Setup random root user password
 RUN echo "root:$(tr -dc A-Za-z0-9 </dev/urandom | head -c 40 ; echo '')" | chpasswd
-
-# Configure default non-root user 'main'
-RUN groupadd -g 1000 -o main
-RUN useradd -m -u 1000 -g 1000 -o -s /bin/bash main
-RUN usermod -aG sudo main
-RUN echo 'main:template' | chpasswd
 
 # Run ssh daemon as command
 ENTRYPOINT ["/entrypoint.sh"]

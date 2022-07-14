@@ -54,7 +54,9 @@ Existing Docker image templates so far:
          -p 8022:22 \
          --storage-opt size=20G \
          --restart unless-stopped \
-         -itd \
+         -e MAIN_UID=$(id -u) \
+         -e FIX_DIRS="/storage /data /share" \
+         -d \
          misit/misit-tf-ssh-x11:latest
 
      # On local machine: Connect via ssh
@@ -103,7 +105,9 @@ Existing Docker image templates so far:
          -p 8022:22 \
          --storage-opt size=20G \
          --restart unless-stopped \
-         -itd \
+         -e MAIN_UID=$(id -u) \
+         -e FIX_DIRS="/storage /data /share" \
+         -d \
          misit/misit-pytorch-ssh-x11:latest
      ```
    </details>
@@ -124,7 +128,9 @@ Existing Docker image templates so far:
          -p 8022:8022 \
          --storage-opt size=20G \
          --restart unless-stopped \
-         -itd \
+         -e MAIN_UID=$(id -u) \
+         -e FIX_DIRS="/storage /data /share" \
+         -d \
          misit/misit-ubuntu-ssh-x11:latest
      ```
    </details>
@@ -158,7 +164,9 @@ Existing Docker image templates so far:
          -p 5999:5900 \
          --storage-opt size=20G \
          --restart unless-stopped \
-         -itd \
+         -e MAIN_UID=$(id -u) \
+         -e FIX_DIRS="/storage /data /share" \
+         -d \
          misit/misit-ubuntu-ssh-x11-xfce:latest
      ```
    </details>

@@ -4,6 +4,7 @@
 if [ ! -f /etc/misit-docker-runonce.lock ]; then
     echo "First container startup... Setup environment..."
     /envparser.py >> /etc/profile
+    source /setupUser.sh
     touch /etc/misit-docker-runonce.lock
 fi
 
