@@ -13,6 +13,6 @@ if ! getent passwd "$MAIN_UID" >/dev/null 2>&1; then
 
     # try to set ownership for given directories
     if [ ! -z "$FIX_DIRS"]; then
-        sudo -u root chown -R $MAIN_UID:$MAIN_UID "${FIX_DIRS[$i]}"
+        sudo -u root chown -R $MAIN_UID:$MAIN_UID ${FIX_DIRS[$i]}
     fi
 fi
