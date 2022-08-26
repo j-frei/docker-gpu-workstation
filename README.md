@@ -46,6 +46,7 @@ Existing Docker image templates so far:
      docker run \
          --gpus '"device=0,1"' \
          --name=tf_ssh_gpu01 \
+         -v /misit-d:/misit-d:ro \
          -v /storage/share:/share \
          -v /storage/<RZ-Kennung>:/storage \
          -v /data/<RZ-Kennung>:/data \
@@ -97,6 +98,7 @@ Existing Docker image templates so far:
      docker run \
          --gpus '"device=0,1"' \
          --name=pytorch_ssh_gpu01 \
+         -v /misit-d:/misit-d:ro \
          -v /storage/share:/share \
          -v /storage/<RZ-Kennung>:/storage \
          -v /data/<RZ-Kennung>:/data \
@@ -120,6 +122,7 @@ Existing Docker image templates so far:
      ```bash
      docker run \
          --name=ubuntu_ssh \
+         -v /misit-d:/misit-d:ro \
          -v /storage/share:/share \
          -v /storage/<RZ-Kennung>:/storage \
          -v /data/<RZ-Kennung>:/data \
@@ -156,6 +159,7 @@ Existing Docker image templates so far:
      ```bash
      docker run \
          --name=ubuntu_ssh_xfce \
+         -v /misit-d:/misit-d:ro \
          -v /storage/share:/share \
          -v /storage/<RZ-Kennung>:/storage \
          -v /data/<RZ-Kennung>:/data \
