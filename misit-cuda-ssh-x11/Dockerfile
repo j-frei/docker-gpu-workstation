@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 # Skip promps
 ENV DEBIAN_FRONTEND=noninteractive

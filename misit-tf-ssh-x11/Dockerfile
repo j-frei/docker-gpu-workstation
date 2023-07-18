@@ -33,8 +33,8 @@ ADD run-once.sh /run-once.sh
 ADD setupUser.sh /setupUser.sh
 ADD envparser.py /envparser.py
 
-# Setup random root user password
-RUN echo "root:$(tr -dc A-Za-z0-9 </dev/urandom | head -c 40 ; echo '')" | chpasswd
+# Disable root user password
+RUN passwd -dlq root
 
 # Run ssh daemon as command
 ENTRYPOINT ["/entrypoint.sh"]
