@@ -36,9 +36,6 @@ ADD envparser.py /envparser.py
 # Disable root user password
 RUN passwd -dlq root
 
-# For TF, run sudo ldconfig once
-RUN ldconfig
-
 # Run ssh daemon as command
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/sbin/sshd", "-D", "-p", "$SSH_PORT"]
