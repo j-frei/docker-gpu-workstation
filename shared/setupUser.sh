@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -z "$MAIN_UID"]; then
+if [ -z "$MAIN_UID" ]; then
     MAIN_UID=1000
 fi
 
@@ -12,7 +12,7 @@ if ! getent passwd "$MAIN_UID" >/dev/null 2>&1; then
     sudo -u root sh -c "echo 'main:template' | chpasswd"
 
     # try to set ownership for given directories
-    if [ ! -z "$FIX_DIRS"]; then
+    if [ ! -z "$FIX_DIRS" ]; then
         sudo -u root chown -R $MAIN_UID:$MAIN_UID ${FIX_DIRS[$i]}
     fi
 fi
