@@ -28,6 +28,12 @@ exit
 
 ## Weitere Befehle
 
+Git-Konfiguration anpassen:
+```bash
+git config --global user.name "Vorname Nachname"
+git config --global user.email "meine.email@provider.de"
+```
+
 Aktuelles Verzeichnis ausgeben (Innerhalb der SSH-Umgebung):
 ```bash
 pwd
