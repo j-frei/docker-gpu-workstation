@@ -132,8 +132,8 @@ Bei Abbruch oder Beenden der SSH-Verbindung werden die laufenden Prozesse der Si
 
 Alle Daten werden beim Löschen des Containers entfernt.  
 **Zwei Verzeichnisse bleiben jedoch persistent**:
-- `/data`: schneller, NVMe-Speicher, jedoch nicht ausfallgesichert und prinzipiell weniger Speicherplatz
-- `/storage`: schneller SATA-SSD (RAID 10)-Verbund, vor Hardwareschäden geschützt, viel Speicherplatz
+- `/data`: sehr schneller NVMe-Speicher, 16TB durch RAID1 gesichert via ZFS.
+- `/storage`: schneller SATA-SSD (RAID 10)-Verbund, 8TB Speicherplatz.
 
 Gegebenenfalls müssen die Zugriffsrechte beim ersten Zugriff angepasst werden.  
 ```bash
@@ -141,7 +141,7 @@ sudo chown -R main:main /data
 sudo chown -R main:main /storage
 ```
 
-Wichtige Info: Der Speicherplatz für nicht-mounts ist auf 20G limitiert. Größere Daten müssen auf die Mounts (/storage, /data) geschrieben werden.
+Wichtige Info: Bitte alle relevanten Daten in den oben genannten Verzeichnissen speichern. Auch große Dateimengen sollten dort gespeichert werden. Es sollte möglichst NICHT das Home-Verzeichnis zur Ablage großer Dateimengen (>10GB) verwendet werden.
 
 
 ## Nützliche Infos
