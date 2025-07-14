@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+FROM pytorch/pytorch:2.7.1-cuda12.6-cudnn9-devel
 
 # Skip promps
 ENV DEBIAN_FRONTEND=noninteractive
