@@ -1,6 +1,7 @@
 #!/bin/bash
 # move to directory of script
 cd "$(dirname "$0")"
+set -e
 
 # copy shared files temporarily into dir
 for file in ../shared/*; do
