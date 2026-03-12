@@ -206,8 +206,8 @@ sudo ./setup_jupyter_lab.sh
 # Confirm password:
 # ......
 
-# Go to $HOME directory and run Jupyter Lab
-sudo -u main sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
+# Run Jupyter Lab
+sudo -u main bash -l -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
 
 # Jupyter Lab is now available at (using self-signed HTTPS):
 # https://misit180.informatik.uni-augsburg.de:9876/
