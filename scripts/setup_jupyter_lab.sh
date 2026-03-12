@@ -81,9 +81,8 @@ sudo -u main openssl req -new -newkey rsa:4096 -sha256 -nodes -x509 \
     -subj "/C=DE/ST=Bayern/L=Augsburg/O=Universität Augsburg/OU=Misit/CN=*.informatik.uni-augsburg.de"
 
 # Hash password
-hashPwd=$(JUPYTER_PWD="$password" sudo -u main bash -l -c \
-    '$PYTHON -c "import os; from jupyter_server.auth import passwd; print(passwd(os.environ[\"JUPYTER_PWD\"]))"' \
-    PYTHON="$pythonCmd")
+hashPwd=$(sudo -u main env JUPYTER_PWD="$password" "$pythonCmd" -c \
+    "import os; from jupyter_server.auth import passwd; print(passwd(os.environ['JUPYTER_PWD']))")
 
 # Write config
 cfg_file="$home_dir/.jupyter/jupyter_lab_config.py"

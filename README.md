@@ -216,7 +216,7 @@ sudo -u main sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
 sudo -u root sh -c 'cat >> /run-once.sh <<EOF
 
 # Jupyter Lab launch
-sudo -u main sh -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
+sudo -u main bash -l -c "cd ~/ && nohup jupyter lab >~/.jupyter-lab.logs.txt 2>&1 &"
 EOF'
 
 # [OPTIONAL] Make /storage & /data easily available through SymLinks
