@@ -182,52 +182,6 @@ Existing Docker image templates so far:
 
 ## Scripts
 
-### Jupyter Notebook
-Steps to install Jupyter Notebook inside Docker container
-<details>
-
-```bash
-# Create new Docker container with additional port (e.g. 9876) to 8888
-docker run .... -p 9876:8888 ....
-
-# Move setup script into Docker container (captial P for port)
-scp -P <SSH_PORT> ./scripts/setup_jupyter_notebook.sh main@misit180.informatik.uni-augsburg.de:~/
-
-# Login
-ssh -p <SSH_PORT> main@misit180.informatik.uni-augsburg.de
-
-# Set new SSH password
-echo 'main:my_new_password' | chpasswd
-
-# Run setup script & enter password for Jupyter Notebook
-sudo ./setup_jupyter_notebook.sh
-# ......
-# New password:
-# Confirm password:
-# ......
-
-# Go to $HOME directory and run Jupyter Notebook
-sudo -u main sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
-
-# Jupyter Notebook is now available at (using self-signed HTTPS):
-# https://misit180.informatik.uni-augsburg.de:9876/
-
-# [OPTIONAL] Add Jupyter Notebook to launch at container startup
-sudo sh -c 'cat >> /run-once.sh <<EOF
-
-# Jupyter Notebook launch
-sudo -u main sh -c "cd ~/ && nohup jupyter notebook >~/.jupyter-notebook.logs.txt 2>&1 &"
-EOF'
-
-# [OPTIONAL] Make /storage & /data easily available through SymLinks
-sudo -u main ln -s /storage /home/main/storage
-sudo -u main ln -s /data /home/main/data
-
-sudo -u root chown -R main:main /home/main/storage/.
-sudo -u root chown -R main:main /home/main/data/.
-```
-</details>
-
 ### Jupyter Lab
 Steps to install Jupyter Lab inside Docker container
 <details>
@@ -243,7 +197,7 @@ scp -P <SSH_PORT> ./scripts/setup_jupyter_lab.sh main@misit180.informatik.uni-au
 ssh -p <SSH_PORT> main@misit180.informatik.uni-augsburg.de
 
 # Set new SSH password
-echo 'main:my_new_password' | chpasswd
+echo 'main:my_new_password' | sudo chpasswd
 
 # Run setup script & enter password for Jupyter Lab
 sudo ./setup_jupyter_lab.sh
